@@ -1,0 +1,19 @@
+# environments
+.venv/
+
+# python cache
+__pycache__/
+*.pyc
+
+# data
+data/raw/
+
+# model artifacts
+models/
+
+# reports (generated)
+reports/figures/
+
+# editor
+.vscode/
+.DS_Store
