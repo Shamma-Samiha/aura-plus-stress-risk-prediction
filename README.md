@@ -52,3 +52,15 @@ AURA-plus/
 - matplotlib, seaborn
 - Streamlit (deployment planned)
 
+---
+
+## Model Selection
+
+A logistic regression baseline achieved an accuracy of 88% with balanced
+performance across all stress levels. Although a Random Forest model was also
+evaluated, it did not outperform the baseline and introduced additional
+misclassification of low-stress cases.
+
+Given its superior performance, interpretability, and stability, logistic
+regression was selected as the final model for deployment.
+
