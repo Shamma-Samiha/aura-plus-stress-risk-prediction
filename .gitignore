@@ -9,7 +9,11 @@ __pycache__/
 data/raw/
 
 # model artifacts
+# model artifacts
 models/
+!models/*.joblib
+!models/*.pkl
+!models/*.json
 
 # reports (generated)
 reports/figures/
