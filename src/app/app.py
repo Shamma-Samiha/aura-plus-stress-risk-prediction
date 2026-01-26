@@ -5,8 +5,11 @@ import joblib
 from pathlib import Path
 from datetime import datetime
 
-MODEL_PATH = Path("models/baseline_logistic_model.joblib")
-DATA_PATH = Path("data/processed/stress_clean.csv")
+ROOT_DIR = Path(__file__).resolve().parents[2]
+
+MODEL_PATH = ROOT_DIR / "models" / "baseline_logistic_model.joblib"
+DATA_PATH = ROOT_DIR / "data" / "processed" / "stress_clean.csv"
+
 
 STRESS_LABELS = {0: "Low", 1: "Moderate", 2: "High"}
 
@@ -184,6 +187,7 @@ SUGGESTION_RULES = {
 }
 
 # ---------- Utilities ----------
+@st.cache_resource
 def load_model():
     if not MODEL_PATH.exists():
         st.error("Model file not found. Train baseline first: python src/models/01_train_baseline.py")
