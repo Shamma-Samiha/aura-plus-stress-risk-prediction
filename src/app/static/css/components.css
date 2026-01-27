@@ -1,0 +1,589 @@
+/* ==============================================
+   AURA+ Component Styles
+   ============================================== */
+
+/* ===== BUTTONS ===== */
+div.stButton > button {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-glow), var(--shadow-md);
+    text-transform: none;
+    letter-spacing: 0.3px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Shimmer effect on buttons */
+div.stButton > button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+div.stButton > button:hover::before {
+    left: 100%;
+}
+
+div.stButton > button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow-lg), var(--shadow-lg);
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+}
+
+div.stButton > button:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glow);
+}
+
+/* Primary button special styling - Vibrant and colorful */
+div.stButton > button[kind="primary"] {
+    font-size: 1.05rem;
+    padding: 0.9rem 2.5rem;
+    background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 25%, #FF8A8A 50%, #FF6B6B 75%, #FF4B4B 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 3s ease infinite, pulseGlow 2s ease-in-out infinite !important;
+    box-shadow: 
+        0 8px 32px rgba(255, 75, 75, 0.5),
+        0 4px 16px rgba(255, 75, 75, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+div.stButton > button[kind="primary"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s;
+    z-index: 1;
+}
+
+div.stButton > button[kind="primary"]:hover::before {
+    left: 100%;
+}
+
+div.stButton > button[kind="primary"]:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: 
+        0 12px 40px rgba(255, 75, 75, 0.6),
+        0 6px 20px rgba(255, 75, 75, 0.5),
+        0 0 0 2px rgba(255, 255, 255, 0.2),
+        inset 0 0 30px rgba(255, 255, 255, 0.1) !important;
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8A8A 25%, #FF4B4B 50%, #FF8A8A 75%, #FF6B6B 100%) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+div.stButton > button[kind="primary"]:active {
+    transform: translateY(-2px) scale(0.98) !important;
+    box-shadow: 
+        0 6px 24px rgba(255, 75, 75, 0.7),
+        0 3px 12px rgba(255, 75, 75, 0.6) !important;
+}
+
+div.stButton > button[kind="primary"] > span {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Add pulsing glow effect to primary button */
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 
+            0 8px 32px rgba(255, 75, 75, 0.5),
+            0 4px 16px rgba(255, 75, 75, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 12px 48px rgba(255, 75, 75, 0.7),
+            0 6px 24px rgba(255, 75, 75, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.2);
+    }
+}
+
+
+/* ===== EXPANDERS / ACCORDIONS ===== */
+.streamlit-expanderHeader {
+    background: var(--bg-card) !important;
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--border-color) !important;
+    margin-bottom: 8px;
+    padding: 1rem 1.25rem !important;
+    transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary) !important;
+}
+
+.streamlit-expanderContent {
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.streamlit-expanderContent > div {
+    overflow: visible !important;
+    width: 100% !important;
+}
+
+.streamlit-expanderHeader:hover {
+    background: var(--bg-card-hover) !important;
+    border-color: var(--border-color-hover) !important;
+    transform: translateX(4px);
+}
+
+.streamlit-expanderHeader[aria-expanded="true"],
+.streamlit-expanderHeader[aria-expanded="true"]:hover {
+    border-color: var(--border-color-hover) !important;
+}
+
+.streamlit-expanderContent {
+    background: var(--bg-card) !important;
+    border-radius: 0 0 var(--radius-md) var(--radius-md) !important;
+    border: 1px solid var(--border-color) !important;
+    border-top: none !important;
+    padding: 1.5rem 1.25rem !important;
+    backdrop-filter: blur(10px);
+    overflow: visible !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.streamlit-expanderHeader p, 
+.streamlit-expanderHeader div, 
+.streamlit-expanderHeader span,
+.streamlit-expanderHeader *,
+.streamlit-expanderContent p, 
+.streamlit-expanderContent div, 
+.streamlit-expanderContent span,
+.streamlit-expanderContent label,
+.streamlit-expanderContent .stMarkdown {
+    color: var(--text-primary) !important;
+}
+
+/* ===== SLIDERS ===== */
+/* Slider track container */
+.stSlider {
+    margin: 1.5rem 0;
+}
+
+/* Slider track (the line) */
+.stSlider > div > div > div {
+    background: linear-gradient(90deg, rgba(255, 75, 75, 0.2) 0%, rgba(255, 107, 107, 0.15) 100%) !important;
+    height: 8px !important;
+    border-radius: 10px !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+    transition: all var(--transition-base) !important;
+    border: 1px solid rgba(255, 75, 75, 0.3) !important;
+}
+
+/* Active/filled portion of the track */
+.stSlider > div > div > div > div {
+    background: linear-gradient(90deg, #FF4B4B 0%, #FF6B6B 50%, #FF8A8A 100%) !important;
+    height: 8px !important;
+    border-radius: 10px !important;
+    box-shadow: 
+        0 0 10px rgba(255, 75, 75, 0.6),
+        0 0 20px rgba(255, 75, 75, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
+    transition: all var(--transition-base) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Slider thumb (the handle) */
+.stSlider > div > div > div > div > div {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    border: 3px solid var(--color-primary) !important;
+    width: 24px !important;
+    height: 24px !important;
+    box-shadow: 
+        0 4px 12px var(--glow-primary),
+        0 2px 6px rgba(255, 75, 75, 0.3),
+        0 0 0 4px rgba(255, 75, 75, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+    transition: all var(--transition-base) !important;
+    cursor: grab !important;
+}
+
+/* Slider thumb on hover */
+.stSlider > div > div > div > div > div:hover {
+    transform: scale(1.15) !important;
+    box-shadow: 
+        0 6px 20px var(--glow-primary),
+        0 3px 10px rgba(255, 75, 75, 0.4),
+        0 0 0 6px rgba(255, 75, 75, 0.15),
+        inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
+    border-color: var(--color-primary-light) !important;
+}
+
+/* Slider thumb when active/dragging */
+.stSlider > div > div > div > div > div:active {
+    transform: scale(1.1) !important;
+    cursor: grabbing !important;
+    box-shadow: 
+        0 4px 15px var(--glow-primary),
+        0 2px 8px rgba(255, 75, 75, 0.5),
+        0 0 0 5px rgba(255, 75, 75, 0.2) !important;
+}
+
+/* Slider value display (the number above the thumb) */
+.stSlider > div > div > div > div > div > div {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    padding: 4px 10px !important;
+    border-radius: 8px !important;
+    box-shadow: 
+        0 4px 12px var(--glow-primary),
+        0 2px 6px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-2px) !important;
+    transition: all var(--transition-base) !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Slider value display on hover */
+.stSlider:hover > div > div > div > div > div > div > div {
+    transform: translateY(-4px) scale(1.05) !important;
+    box-shadow: 
+        0 6px 18px var(--glow-primary),
+        0 3px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Slider label styling */
+.stSlider label {
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 0.75rem !important;
+    display: block !important;
+    letter-spacing: -0.01em !important;
+    color: var(--text-primary) !important;
+}
+
+.stSlider p {
+    color: var(--text-primary) !important;
+}
+
+/* Slider container hover effect */
+.stSlider:hover > div > div > div {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    background: linear-gradient(90deg, rgba(255, 75, 75, 0.3) 0%, rgba(255, 107, 107, 0.25) 100%) !important;
+    border-color: rgba(255, 75, 75, 0.5) !important;
+}
+
+/* Slider container hover - active track */
+.stSlider:hover > div > div > div > div {
+    box-shadow: 
+        0 0 15px var(--glow-primary),
+        0 0 25px rgba(255, 75, 75, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ===== SELECT BOXES ===== */
+.stSelectbox > div > div {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.stSelectbox > div > div:hover {
+    border-color: var(--border-color-hover);
+    box-shadow: var(--shadow-glow);
+}
+
+.stSelectbox label, 
+.stSelectbox p {
+    color: var(--text-primary) !important;
+}
+
+/* ===== CARDS ===== */
+.result-card {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(20px);
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-base);
+    animation: fadeIn var(--transition-slow) ease-out;
+}
+
+.result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.info-card {
+    background: var(--bg-card);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    background: var(--bg-navbar);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: var(--z-fixed);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ===== TOGGLE SWITCH ===== */
+.stToggle {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 0.5rem;
+}
+
+.stToggle label,
+[data-testid="stToggle"] label,
+[data-testid="stToggle"] p,
+[data-testid="stToggle"] span {
+    color: var(--text-primary) !important;
+}
+
+/* Toggle switch */
+.stToggle [data-baseweb="switch"],
+.stToggle button[data-baseweb="switch"],
+[data-testid="stToggle"] [data-baseweb="switch"],
+[data-testid="stToggle"] button[data-baseweb="switch"] {
+    background-color: var(--border-color) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.stToggle [data-baseweb="switch"][aria-checked="true"],
+[data-testid="stToggle"] [data-baseweb="switch"][aria-checked="true"] {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+.stToggle [data-baseweb="switch"] [data-baseweb="thumb"],
+[data-testid="stToggle"] [data-baseweb="switch"] [data-baseweb="thumb"] {
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== INFO BOXES ===== */
+.stInfo {
+    background: var(--bg-card);
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+}
+
+/* ===== DOWNLOAD BUTTON ===== */
+.stDownloadButton > button {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    border: none;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.stDownloadButton > button:hover {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===== DATAFRAME ===== */
+.dataframe {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+/* ===== INPUT FIELDS ===== */
+input[type="text"], 
+input[type="number"], 
+textarea {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-base);
+}
+
+input[type="text"]:focus, 
+input[type="number"]:focus, 
+textarea:focus {
+    border-color: var(--border-color-focus);
+    box-shadow: 0 0 0 3px var(--glow-primary);
+    outline: none;
+}
+
+/* ===== SIDEBAR ===== */
+[data-testid="stSidebar"] {
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+}
+
+[data-testid="stSidebar"] p, 
+[data-testid="stSidebar"] span, 
+[data-testid="stSidebar"] div,
+[data-testid="stSidebar"] label {
+    color: var(--text-primary) !important;
+}
+
+/* ===== TEXT VISIBILITY ===== */
+.stMarkdown, 
+.stMarkdown p, 
+.stMarkdown div, 
+.stMarkdown span,
+.stText, 
+.stTextInput > div > div > input, 
+.stTextInput label,
+p, span, div, label,
+.element-container p, 
+.element-container span, 
+.element-container div,
+[data-testid="stMetricLabel"], 
+[data-testid="stMetricValue"] {
+    color: var(--text-primary);
+}
+
+/* Widget labels */
+label, 
+.stWidget label, 
+.stWidget p {
+    color: var(--text-primary) !important;
+}
+
+/* ===== MAIN APP CONTAINER ===== */
+.stApp {
+    background: var(--bg-main);
+    color: var(--text-primary);
+    overflow-x: hidden !important;
+}
+
+.block-container {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+    max-width: 1100px;
+    position: relative;
+    z-index: var(--z-base);
+    overflow-x: visible !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Fix column overflow */
+[data-testid="column"] {
+    overflow: visible !important;
+    width: 100% !important;
+}
+
+.stColumn {
+    overflow: visible !important;
+}
+
+/* Fix widget containers to prevent overflow */
+.element-container {
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.stWidget {
+    overflow: visible !important;
+    width: 100% !important;
+}
+
+/* Ensure sliders and selectboxes don't overflow */
+.stSlider,
+.stSelectbox {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+}
+
+.stSlider > div,
+.stSelectbox > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+}
+
+/* ===== HEADERS ===== */
+.main-header {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+h2 {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+}
+
+h3 {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+/* ===== CAPTIONS ===== */
+.stCaption {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}

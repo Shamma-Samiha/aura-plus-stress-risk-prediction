@@ -1,0 +1,78 @@
+/* ==============================================
+   AURA+ Dark Theme Styles
+   ============================================== */
+
+:root[data-theme="dark"] {
+    /* Color Palette */
+    --color-primary: #FF4B4B;
+    --color-primary-light: #FF6B6B;
+    --color-primary-dark: #FF2B2B;
+    
+    /* Background Colors */
+    --bg-main: #0a0e1a;
+    --bg-card: rgba(30, 35, 50, 0.6);
+    --bg-card-hover: rgba(40, 45, 60, 0.8);
+    --bg-sidebar: auto;
+    --bg-navbar: rgba(15, 20, 35, 0.95);
+    --bg-input: rgba(30, 35, 50, 0.5);
+    
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #b0b8c4;
+    --text-tertiary: #64748b;
+    --text-muted: #475569;
+    
+    /* Border Colors */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --border-color-hover: rgba(255, 75, 75, 0.3);
+    --border-color-focus: rgba(255, 75, 75, 0.5);
+    
+    /* Shadow & Glow */
+    --glow-primary: rgba(255, 75, 75, 0.4);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 4px 20px var(--glow-primary);
+    --shadow-glow-lg: 0 8px 30px var(--glow-primary);
+    
+    /* Gradient Overlays */
+    --gradient-radial-1: radial-gradient(circle at 20% 50%, rgba(255, 75, 75, 0.05) 0%, transparent 50%);
+    --gradient-radial-2: radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.05) 0%, transparent 50%);
+}
+
+/* Main Background with Gradient Overlay */
+.stApp[data-theme="dark"] {
+    background: var(--bg-main);
+    color: var(--text-primary);
+}
+
+.stApp[data-theme="dark"]::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-radial-1), var(--gradient-radial-2);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Cards */
+.card-dark {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.card-dark:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-color-hover);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Divider */
+hr {
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+}
