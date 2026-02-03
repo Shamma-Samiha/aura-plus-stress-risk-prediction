@@ -98,7 +98,7 @@ st.divider()
 # ========== QUESTIONNAIRE SECTION ==========
 st.markdown(f"""
 <div class="animate-fade-in" style="margin: 2rem 0 1.5rem 0;">
-<h2 class="gradient-text animate-stagger-1" style="font-size: 2rem; font-weight: 800; margin: 0;">1️⃣ Answer a Few Questions</h2>
+<h2 class="animate-stagger-1" style="font-size: 2rem; font-weight: 800; margin: 0; color: #FF4B4B;">1️⃣ Answer a Few Questions</h2>
 <p class="animate-stagger-2" style="color: {colors['text_secondary']}; font-size: 0.95rem; margin-top: 0.5rem;">Please provide information about your current situation across different life areas.</p>
 </div>
 """, unsafe_allow_html=True)
@@ -111,7 +111,7 @@ st.divider()
 # ========== PREDICTION SECTION ==========
 st.markdown(f"""
 <div class="animate-fade-in" style="margin: 2rem 0 1.5rem 0; text-align: center;">
-<h2 class="gradient-text animate-stagger-1" style="font-size: 2rem; font-weight: 800; margin: 0;">2️⃣ See Your Result</h2>
+<h2 class="animate-stagger-1" style="font-size: 2rem; font-weight: 800; margin: 0; color: #FF4B4B;">2️⃣ See Your Result</h2>
 <p class="animate-stagger-2" style="color: {colors['text_secondary']}; font-size: 0.95rem; margin-top: 0.5rem;">Click the button below to get your stress risk assessment.</p>
 </div>
 """, unsafe_allow_html=True)

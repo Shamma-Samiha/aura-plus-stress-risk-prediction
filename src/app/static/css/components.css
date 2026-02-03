@@ -211,10 +211,13 @@ div[data-testid="stExpander"] > details > div:last-child {
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
-/* Slider thumb (the handle) */
+/* Slider thumb (the handle) - use multiple stable selectors */
+[data-testid="stSlider"] [role="slider"],
+.stSlider [role="slider"],
 .stSlider > div > div > div > div > div {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
     border: 3px solid var(--color-primary) !important;
+    border-radius: 50% !important;
     width: 24px !important;
     height: 24px !important;
     box-shadow: 
@@ -227,6 +230,8 @@ div[data-testid="stExpander"] > details > div:last-child {
 }
 
 /* Slider thumb on hover */
+[data-testid="stSlider"] [role="slider"]:hover,
+.stSlider [role="slider"]:hover,
 .stSlider > div > div > div > div > div:hover {
     transform: scale(1.15) !important;
     box-shadow: 
@@ -238,6 +243,8 @@ div[data-testid="stExpander"] > details > div:last-child {
 }
 
 /* Slider thumb when active/dragging */
+[data-testid="stSlider"] [role="slider"]:active,
+.stSlider [role="slider"]:active,
 .stSlider > div > div > div > div > div:active {
     transform: scale(1.1) !important;
     cursor: grabbing !important;
