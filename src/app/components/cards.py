@@ -71,10 +71,23 @@ def render_header(title: str, subtitle: str = "", theme: str = "dark"):
         theme: Current theme
     """
     subtitle_color = "#b0b8c4" if theme == "dark" else "#64748b"
+    # Solid color fallback in case gradient doesn't work
+    title_color = "#FF4B4B"
     
     header_html = f"""
 <div class="animate-fade-in" style="text-align: center; margin-bottom: 2rem;">
-<h1 class="main-header gradient-text" style="background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 50%, #FF8A8A 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-clip: text;animation: gradientShift 3s ease infinite;background-size: 200% 200%;">{title}</h1>
+<h1 class="main-header gradient-text" style="
+    color: {title_color};
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 50%, #FF8A8A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% 200%;
+">{title}</h1>
 {f'<p class="animate-stagger-2" style="color: {subtitle_color}; font-size: 1.1rem; margin-top: 0.5rem; font-weight: 400;">{subtitle}</p>' if subtitle else ''}
 </div>
 """
