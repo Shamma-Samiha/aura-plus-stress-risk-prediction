@@ -23,6 +23,7 @@ from components.navbar import render_navbar
 from components.sidebar import render_sidebar
 from components.cards import render_info_card, render_header
 from components.forms import render_all_questions
+from components.pages import render_about_page, render_results_page
 
 # ========== PAGE CONFIGURATION ==========
 st.set_page_config(
@@ -56,8 +57,23 @@ if "initialized" not in st.session_state:
     set_defaults(feature_names)
     st.session_state["initialized"] = True
 
+# Initialize page navigation
+if "current_page" not in st.session_state:
+    st.session_state["current_page"] = "assessment"
+
 # ========== MAIN CONTENT ==========
 colors = get_theme_colors(st.session_state["theme"])
+
+# ========== PAGE ROUTING ==========
+if st.session_state["current_page"] == "about":
+    render_about_page(st.session_state["theme"])
+    st.stop()  # Don't render the rest of the page
+    
+elif st.session_state["current_page"] == "results":
+    render_results_page(st.session_state["theme"])
+    st.stop()  # Don't render the rest of the page
+
+# Otherwise, render the assessment page (default)
 
 # Header
 render_header(
@@ -239,6 +255,9 @@ if predict_clicked:
     
     # Render the complete result card
     render_result_card(result_content, st.session_state["theme"])
+    
+    # Save result to session state for viewing later
+    st.session_state["last_prediction"] = result_content
 
     # Advanced details
     if show_advanced:

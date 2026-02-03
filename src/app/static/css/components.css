@@ -183,49 +183,38 @@ div[data-testid="stExpander"] > details > div:last-child {
 }
 
 /* ===== SLIDERS ===== */
-/* Slider track container */
+/* Slider container */
 .stSlider {
-    margin: 1.5rem 0;
+    margin: 1rem 0;
 }
 
 /* Slider track (the line) */
 .stSlider > div > div > div {
-    background: linear-gradient(90deg, rgba(255, 75, 75, 0.2) 0%, rgba(255, 107, 107, 0.15) 100%) !important;
-    height: 8px !important;
-    border-radius: 10px !important;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1) !important;
-    transition: all var(--transition-base) !important;
-    border: 1px solid rgba(255, 75, 75, 0.3) !important;
+    background: rgba(200, 200, 200, 0.3) !important;
+    height: 4px !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
 }
 
 /* Active/filled portion of the track */
 .stSlider > div > div > div > div {
-    background: linear-gradient(90deg, #FF4B4B 0%, #FF6B6B 50%, #FF8A8A 100%) !important;
-    height: 8px !important;
-    border-radius: 10px !important;
-    box-shadow: 
-        0 0 10px rgba(255, 75, 75, 0.6),
-        0 0 20px rgba(255, 75, 75, 0.4),
-        inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
-    transition: all var(--transition-base) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    background: #FF4B4B !important;
+    height: 4px !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
 }
 
-/* Slider thumb (the handle) - use multiple stable selectors */
+/* Slider thumb (the handle) - simplified */
 [data-testid="stSlider"] [role="slider"],
 .stSlider [role="slider"],
 .stSlider > div > div > div > div > div {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
-    border: 3px solid var(--color-primary) !important;
+    background: #ffffff !important;
+    border: 2px solid #FF4B4B !important;
     border-radius: 50% !important;
-    width: 24px !important;
-    height: 24px !important;
-    box-shadow: 
-        0 4px 12px var(--glow-primary),
-        0 2px 6px rgba(255, 75, 75, 0.3),
-        0 0 0 4px rgba(255, 75, 75, 0.1),
-        inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
-    transition: all var(--transition-base) !important;
+    width: 18px !important;
+    height: 18px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.2s ease !important;
     cursor: grab !important;
 }
 
@@ -233,13 +222,8 @@ div[data-testid="stExpander"] > details > div:last-child {
 [data-testid="stSlider"] [role="slider"]:hover,
 .stSlider [role="slider"]:hover,
 .stSlider > div > div > div > div > div:hover {
-    transform: scale(1.15) !important;
-    box-shadow: 
-        0 6px 20px var(--glow-primary),
-        0 3px 10px rgba(255, 75, 75, 0.4),
-        0 0 0 6px rgba(255, 75, 75, 0.15),
-        inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
-    border-color: var(--color-primary-light) !important;
+    transform: scale(1.2) !important;
+    box-shadow: 0 3px 6px rgba(255, 75, 75, 0.3) !important;
 }
 
 /* Slider thumb when active/dragging */
@@ -248,64 +232,31 @@ div[data-testid="stExpander"] > details > div:last-child {
 .stSlider > div > div > div > div > div:active {
     transform: scale(1.1) !important;
     cursor: grabbing !important;
-    box-shadow: 
-        0 4px 15px var(--glow-primary),
-        0 2px 8px rgba(255, 75, 75, 0.5),
-        0 0 0 5px rgba(255, 75, 75, 0.2) !important;
 }
 
-/* Slider value display (the number above the thumb) */
+/* Slider value display (the number above the thumb) - simplified */
 .stSlider > div > div > div > div > div > div {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%) !important;
+    background: #FF4B4B !important;
     color: #ffffff !important;
-    font-weight: 700 !important;
-    font-size: 0.85rem !important;
-    padding: 4px 10px !important;
-    border-radius: 8px !important;
-    box-shadow: 
-        0 4px 12px var(--glow-primary),
-        0 2px 6px rgba(0, 0, 0, 0.2) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    transform: translateY(-2px) !important;
-    transition: all var(--transition-base) !important;
-    letter-spacing: 0.5px !important;
-}
-
-/* Slider value display on hover */
-.stSlider:hover > div > div > div > div > div > div > div {
-    transform: translateY(-4px) scale(1.05) !important;
-    box-shadow: 
-        0 6px 18px var(--glow-primary),
-        0 3px 8px rgba(0, 0, 0, 0.25) !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    padding: 2px 8px !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.2s ease !important;
 }
 
 /* Slider label styling */
 .stSlider label {
-    font-weight: 600 !important;
-    font-size: 0.95rem !important;
-    margin-bottom: 0.75rem !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 0.5rem !important;
     display: block !important;
-    letter-spacing: -0.01em !important;
     color: var(--text-primary) !important;
 }
 
 .stSlider p {
     color: var(--text-primary) !important;
-}
-
-/* Slider container hover effect */
-.stSlider:hover > div > div > div {
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-    background: linear-gradient(90deg, rgba(255, 75, 75, 0.3) 0%, rgba(255, 107, 107, 0.25) 100%) !important;
-    border-color: rgba(255, 75, 75, 0.5) !important;
-}
-
-/* Slider container hover - active track */
-.stSlider:hover > div > div > div > div {
-    box-shadow: 
-        0 0 15px var(--glow-primary),
-        0 0 25px rgba(255, 75, 75, 0.3),
-        inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* ===== SELECT BOXES ===== */

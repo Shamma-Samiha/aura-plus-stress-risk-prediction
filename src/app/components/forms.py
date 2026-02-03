@@ -45,24 +45,46 @@ def render_question_section(section_name: str, feature_names: list, theme: str =
             col = cols[i % 2]
             
             with col:
+                # Add some spacing between inputs
+                if i > 0 and i % 2 == 0:
+                    st.markdown("<br>", unsafe_allow_html=True)
+                
                 if meta["type"] == "range":
+                    # Get min and max for better formatting
+                    min_val = meta["min"]
+                    max_val = meta["max"]
+                    
+                    # Format function to show value clearly
+                    def format_value(val, min_v=min_val, max_v=max_val):
+                        return f"{val} / {max_v}"
+                    
                     st.slider(
                         meta["label"],
-                        min_value=meta["min"],
-                        max_value=meta["max"],
+                        min_value=min_val,
+                        max_value=max_val,
                         value=st.session_state.get(f"inp_{feat}", meta["default"]),
                         key=f"inp_{feat}",
-                        help=meta["help"]
+                        help=meta["help"],
+                        format="%d"
                     )
+                    
                 elif meta["type"] == "likert":
+                    # Likert scale with labels
+                    likert_labels = {1: "Strongly Disagree", 2: "Disagree", 3: "Neutral", 4: "Agree", 5: "Strongly Agree"}
+                    
                     st.slider(
                         meta["label"],
                         min_value=1,
                         max_value=5,
                         value=st.session_state.get(f"inp_{feat}", meta["default"]),
                         key=f"inp_{feat}",
-                        help=meta["help"]
+                        help=meta["help"],
+                        format="%d"
                     )
+                    # Show current selection label
+                    current_val = st.session_state.get(f"inp_{feat}", meta["default"])
+                    st.caption(f"*{likert_labels.get(current_val, '')}*")
+                    
                 elif meta["type"] == "binary":
                     st.selectbox(
                         meta["label"],

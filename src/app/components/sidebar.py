@@ -73,6 +73,13 @@ def render_sidebar(theme: str):
                         if key.startswith("inp_"):
                             del st.session_state[key]
                     st.session_state["initialized"] = False
+                    st.session_state["current_page"] = "assessment"
+                    st.rerun()
+                elif "View Results" in label:
+                    st.session_state["current_page"] = "results"
+                    st.rerun()
+                elif "About" in label:
+                    st.session_state["current_page"] = "about"
                     st.rerun()
         
         st.divider()
