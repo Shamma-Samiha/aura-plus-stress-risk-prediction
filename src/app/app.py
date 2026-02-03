@@ -78,8 +78,8 @@ elif st.session_state["current_page"] == "results":
 
 # Header
 render_header(
-    "AURA+ Stress Risk",
-    "A premium educational screening tool by Shamma Samiha",
+    "AURA+",
+    "A premium educational screening tool",
     st.session_state["theme"]
 )
 

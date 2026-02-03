@@ -61,42 +61,35 @@ def render_info_card(title: str, content: str, emoji: str = "ℹ️", theme: str
     st.markdown(card_html, unsafe_allow_html=True)
 
 
-def render_header(title: str, subtitle: str = "", theme: str = "dark"):
-    """
-    Streamlit Cloud–safe header renderer.
-    Title is ALWAYS visible, gradient applied only when supported.
-    """
 
+def render_header(title: str, subtitle: str = "", theme: str = "dark"):
     subtitle_color = "#b0b8c4" if theme == "dark" else "#64748b"
+
+    subtitle_html = ""
+    if subtitle:
+        subtitle_html = (
+            f"<p style='margin-top:0.6rem; font-size:1.05rem; "
+            f"color:{subtitle_color}; font-weight:400; text-align:center;'>"
+            f"{subtitle}</p>"
+        )
 
     st.markdown(
         f"""
         <div style="text-align:center; margin: 2rem 0 2.5rem 0;">
-            <h1
-                style="
-                    font-size:3.2rem;
-                    font-weight:800;
-                    margin:0;
-                    line-height:1.1;
-                    letter-spacing:-0.02em;
-                    color:#FF4B4B;
-                    background: linear-gradient(135deg,#FF4B4B,#FF6B6B,#FF8A8A);
-                    background-clip:text;
-                    -webkit-background-clip:text;
-                    display:inline-block;
-                "
-            >
+            <h1 style="
+                font-size:3.2rem;
+                font-weight:800;
+                margin:0;
+                line-height:1.1;
+                letter-spacing:-0.02em;
+                color:#FF4B4B;
+                background: linear-gradient(135deg,#FF4B4B,#FF6B6B,#FF8A8A);
+                background-clip:text;
+                -webkit-background-clip:text;
+                display:inline-block;">
                 {title}
             </h1>
-
-            <p style="
-                margin-top:0.6rem;
-                font-size:1.05rem;
-                color:{subtitle_color};
-                font-weight:400;
-            ">
-                {subtitle}
-            </p>
+            {subtitle_html}
         </div>
         """,
         unsafe_allow_html=True,
