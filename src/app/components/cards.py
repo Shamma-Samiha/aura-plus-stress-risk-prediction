@@ -63,36 +63,46 @@ def render_info_card(title: str, content: str, emoji: str = "ℹ️", theme: str
 
 def render_header(title: str, subtitle: str = "", theme: str = "dark"):
     """
-    Render a page header with gradient title and animations.
-    
-    Args:
-        title: Main title
-        subtitle: Optional subtitle
-        theme: Current theme
+    Streamlit Cloud–safe header renderer.
+    Title is ALWAYS visible, gradient applied only when supported.
     """
+
     subtitle_color = "#b0b8c4" if theme == "dark" else "#64748b"
-    # Solid color fallback in case gradient doesn't work
-    title_color = "#FF4B4B"
-    
-    header_html = f"""
-<div class="animate-fade-in" style="text-align: center; margin-bottom: 2rem;">
-<h1 class="main-header gradient-text" style="
-    color: {title_color};
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 1rem 0;
-    background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 50%, #FF8A8A 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradientShift 3s ease infinite;
-    background-size: 200% 200%;
-">{title}</h1>
-{f'<p class="animate-stagger-2" style="color: {subtitle_color}; font-size: 1.1rem; margin-top: 0.5rem; font-weight: 400;">{subtitle}</p>' if subtitle else ''}
-</div>
-"""
-    
-    st.markdown(header_html, unsafe_allow_html=True)
+
+    st.markdown(
+        f"""
+        <div style="text-align:center; margin: 2rem 0 2.5rem 0;">
+            <h1
+                style="
+                    font-size:3.2rem;
+                    font-weight:800;
+                    margin:0;
+                    line-height:1.1;
+                    letter-spacing:-0.02em;
+                    color:#FF4B4B;
+                    background: linear-gradient(135deg,#FF4B4B,#FF6B6B,#FF8A8A);
+                    background-clip:text;
+                    -webkit-background-clip:text;
+                    display:inline-block;
+                "
+            >
+                {title}
+            </h1>
+
+            <p style="
+                margin-top:0.6rem;
+                font-size:1.05rem;
+                color:{subtitle_color};
+                font-weight:400;
+            ">
+                {subtitle}
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 
 
 def render_result_card(content: str, theme: str = "dark"):
