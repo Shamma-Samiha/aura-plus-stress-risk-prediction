@@ -512,36 +512,32 @@ section.main > div.block-container {
 }
 
 /* ===== HEADERS ===== */
-/* --- Cloud-safe gradient title --- */
+/* --- Ultra Cloud-safe gradient title --- */
 .main-header{
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.3rem;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+    display: inline-block;
 
-  /* Fallback color so it NEVER disappears */
-  color: #FF4B4B;
+    /* Always-visible fallback */
+    color: #FF4B4B !important;
 
-  /* Gradient */
-  background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 50%, #FF8A8A 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
+    /* Gradient */
+    background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 50%, #FF8A8A 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
 
-  /* Some environments break with this, but we guard below */
-  -webkit-text-fill-color: transparent;
-
-  /* Helps avoid weird clipping issues */
-  display: inline-block;
+    /* Default: keep text visible */
+    -webkit-text-fill-color: initial !important;
 }
 
-/* If background-clip isn't supported, do NOT make the text transparent */
-@supports not (-webkit-background-clip: text) {
-  .main-header{
-    background: none !important;
-    -webkit-text-fill-color: initial !important;
-    color: #FF4B4B !important;
-  }
+/* Apply transparent fill ONLY when clip is reliably supported */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .main-header{
+        -webkit-text-fill-color: transparent !important;
+    }
 }
 
 /* ===== CAPTIONS ===== */
