@@ -12,6 +12,7 @@ from utils.model import (
     load_model,
     get_feature_names,
     explain_with_coefficients,
+    predict_proba_safe,
     format_feature_label,
     make_report_text,
     set_defaults
@@ -157,7 +158,7 @@ if predict_clicked:
 
     # Make prediction
     pred = int(model.predict(user_df[feature_names])[0])
-    proba = model.predict_proba(user_df[feature_names])[0]
+    proba = predict_proba_safe(model, user_df[feature_names])[0]
     pred_label = STRESS_LABELS[pred]
 
     # Results card with glassmorphism

@@ -189,7 +189,7 @@ div[data-testid="stExpander"] > details > div:last-child {
 }
 
 /* Slider track (the line) */
-.stSlider > div > div > div {
+.stSlider > div > div > div[data-baseweb="slider"] > div:first-child {
     background: rgba(200, 200, 200, 0.3) !important;
     height: 4px !important;
     border-radius: 4px !important;
@@ -197,17 +197,15 @@ div[data-testid="stExpander"] > details > div:last-child {
 }
 
 /* Active/filled portion of the track */
-.stSlider > div > div > div > div {
+.stSlider > div > div > div[data-baseweb="slider"] > div:first-child > div {
     background: #FF4B4B !important;
     height: 4px !important;
     border-radius: 4px !important;
     transition: all 0.2s ease !important;
 }
 
-/* Slider thumb (the handle) - simplified */
-[data-testid="stSlider"] [role="slider"],
-.stSlider [role="slider"],
-.stSlider > div > div > div > div > div {
+/* Slider thumb (the handle) - using specific role selector only */
+[data-testid="stSlider"] div[role="slider"] {
     background: #ffffff !important;
     border: 2px solid #FF4B4B !important;
     border-radius: 50% !important;
@@ -219,23 +217,19 @@ div[data-testid="stExpander"] > details > div:last-child {
 }
 
 /* Slider thumb on hover */
-[data-testid="stSlider"] [role="slider"]:hover,
-.stSlider [role="slider"]:hover,
-.stSlider > div > div > div > div > div:hover {
+[data-testid="stSlider"] div[role="slider"]:hover {
     transform: scale(1.2) !important;
     box-shadow: 0 3px 6px rgba(255, 75, 75, 0.3) !important;
 }
 
 /* Slider thumb when active/dragging */
-[data-testid="stSlider"] [role="slider"]:active,
-.stSlider [role="slider"]:active,
-.stSlider > div > div > div > div > div:active {
+[data-testid="stSlider"] div[role="slider"]:active {
     transform: scale(1.1) !important;
     cursor: grabbing !important;
 }
 
-/* Slider value display (the number above the thumb) - simplified */
-.stSlider > div > div > div > div > div > div {
+/* Slider value display (the number above the thumb) */
+[data-testid="stSlider"] div[role="slider"] > div {
     background: #FF4B4B !important;
     color: #ffffff !important;
     font-weight: 600 !important;

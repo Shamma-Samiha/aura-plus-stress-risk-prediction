@@ -27,16 +27,10 @@ def load_css(theme: str = "dark"):
             with open(css_path, "r", encoding="utf-8") as f:
                 css_content += f.read() + "\n"
     
-    # Add theme data attribute to body
+    # Inject CSS
     if css_content:
         st.markdown(f"""
             <style>
-            :root {{
-                data-theme: {theme};
-            }}
-            .stApp {{
-                data-theme: {theme};
-            }}
             {css_content}
             </style>
         """, unsafe_allow_html=True)

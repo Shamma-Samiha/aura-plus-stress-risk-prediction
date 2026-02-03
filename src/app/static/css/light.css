@@ -2,7 +2,7 @@
    AURA+ Light Theme Styles
    ============================================== */
 
-:root[data-theme="light"] {
+:root {
     /* Color Palette */
     --color-primary: #FF4B4B;
     --color-primary-light: #FF6B6B;
@@ -42,12 +42,12 @@
 }
 
 /* Main Background with Gradient Overlay */
-.stApp[data-theme="light"] {
+.stApp {
     background: var(--bg-main);
     color: var(--text-primary);
 }
 
-.stApp[data-theme="light"]::before {
+.stApp::before {
     content: '';
     position: absolute;
     top: 0;
@@ -57,19 +57,6 @@
     background: var(--gradient-radial-1), var(--gradient-radial-2);
     pointer-events: none;
     z-index: 0;
-}
-
-/* Cards */
-.card-light {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-md);
-}
-
-.card-light:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--border-color-hover);
-    box-shadow: var(--shadow-lg);
 }
 
 /* Divider */

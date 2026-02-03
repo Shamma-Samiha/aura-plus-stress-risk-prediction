@@ -45,10 +45,20 @@ def explain_with_coefficients(pipeline, user_df, feature_names, top_k=6):
     scaler = pipeline.named_steps["scaler"]
     model = pipeline.named_steps["model"]
 
+    # Use pipeline for prediction (handles scaling internally)
+    pred_class = int(pipeline.predict(user_df[feature_names])[0])
+    
+    # Get scaled data for coefficient explanation
     x_scaled = scaler.transform(user_df[feature_names])
-    pred_class = int(model.predict(user_df[feature_names])[0])
-
-    coef = model.coef_[pred_class]
+    
+    # Handle coefficient access - works for both binary and multiclass
+    if len(model.coef_.shape) == 1:
+        # Binary classification
+        coef = model.coef_
+    else:
+        # Multiclass classification
+        coef = model.coef_[pred_class]
+    
     contributions = x_scaled.flatten() * coef
     expl = pd.Series(contributions, index=feature_names).sort_values(key=np.abs, ascending=False)
     return pred_class, expl.head(top_k)
@@ -107,3 +117,61 @@ def set_defaults(feature_names):
         meta = QUESTION_MAP.get(feat, {})
         default = meta.get("default", 3)
         st.session_state[f"inp_{feat}"] = default
+
+
+def predict_proba_safe(pipeline, X):
+    """
+    Robustly compute probability estimates for a sklearn pipeline where the
+    final estimator may not expose `predict_proba` properly due to serialization
+    / sklearn version differences.
+
+    Args:
+        pipeline: sklearn Pipeline with steps including a scaler and a model
+        X: array-like or DataFrame of input features (unscaled)
+
+    Returns:
+        np.ndarray: probability estimates with shape (n_samples, n_classes)
+    """
+    scaler = pipeline.named_steps.get("scaler")
+    model = pipeline.named_steps.get("model")
+
+    # Prepare scaled inputs if a scaler is present
+    if scaler is not None:
+        X_in = scaler.transform(X)
+    else:
+        X_in = X
+
+    # Prefer pipeline.predict_proba when available
+    try:
+        return pipeline.predict_proba(X)
+    except Exception:
+        pass
+
+    # Try model-specific fallbacks
+    # 1) If estimator exposes _predict_proba_lr (LogisticRegression internals)
+    if hasattr(model, "_predict_proba_lr"):
+        try:
+            return model._predict_proba_lr(X_in)
+        except Exception:
+            pass
+
+    # 2) Use decision_function + softmax / sigmoid
+    import numpy as _np
+    if hasattr(model, "decision_function"):
+        scores = model.decision_function(X_in)
+        # Binary case: scores shape (n_samples,)
+        if scores.ndim == 1:
+            probs_pos = 1.0 / (1.0 + _np.exp(-scores))
+            probs = _np.vstack([1 - probs_pos, probs_pos]).T
+            return probs
+        # Multiclass: apply softmax row-wise
+        exp = _np.exp(scores - _np.max(scores, axis=1, keepdims=True))
+        probs = exp / _np.sum(exp, axis=1, keepdims=True)
+        return probs
+
+    # 3) Last resort: if model has predict_proba but pipeline call failed, try estimator directly
+    if hasattr(model, "predict_proba"):
+        return model.predict_proba(X_in)
+
+    # Could not compute probabilities
+    raise AttributeError("Unable to compute probability estimates for the provided model.")
