@@ -47,27 +47,16 @@ def render_info_card(title: str, content: str, emoji: str = "ℹ️", theme: str
     shadow = "0 4px 20px rgba(0, 0, 0, 0.3)" if theme == "dark" else "0 2px 8px rgba(0, 0, 0, 0.06)"
     
     card_html = f"""
-    <div class="glass-card animate-fade-in hover-lift" style="
-        background: {scheme['bg']};
-        border-left: 4px solid {scheme['border']};
-        padding: 1.25rem;
-        border-radius: 12px;
-        margin-bottom: 1.5rem;
-        box-shadow: {shadow}, 0 0 20px {scheme['glow']};
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-    ">
-        <div style="display: flex; align-items: start; gap: 0.75rem;">
-            <span style="font-size: 1.5rem; animation: float 3s ease-in-out infinite;">{emoji}</span>
-            <div style="flex: 1;">
-                <strong style="font-size: 1rem; display: block; margin-bottom: 0.5rem; color: {title_color}; font-weight: 700;">{title}</strong>
-                <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: {text_color};">
-                    {content}
-                </p>
-            </div>
-        </div>
-    </div>
-    """
+<div class="glass-card animate-fade-in hover-lift" style="background: {scheme['bg']};border-left: 4px solid {scheme['border']};padding: 1.25rem;border-radius: 12px;margin-bottom: 1.5rem;box-shadow: {shadow}, 0 0 20px {scheme['glow']};backdrop-filter: blur(20px);-webkit-backdrop-filter: blur(20px);">
+<div style="display: flex; align-items: start; gap: 0.75rem;">
+<span style="font-size: 1.5rem; animation: float 3s ease-in-out infinite;">{emoji}</span>
+<div style="flex: 1;">
+<strong style="font-size: 1rem; display: block; margin-bottom: 0.5rem; color: {title_color}; font-weight: 700;">{title}</strong>
+<p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: {text_color};">{content}</p>
+</div>
+</div>
+</div>
+"""
     
     st.markdown(card_html, unsafe_allow_html=True)
 
@@ -84,18 +73,11 @@ def render_header(title: str, subtitle: str = "", theme: str = "dark"):
     subtitle_color = "#b0b8c4" if theme == "dark" else "#64748b"
     
     header_html = f"""
-    <div class="animate-fade-in" style="text-align: center; margin-bottom: 2rem;">
-        <h1 class="main-header gradient-text" style="
-            background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 50%, #FF8A8A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite;
-            background-size: 200% 200%;
-        ">{title}</h1>
-        {f'<p class="animate-stagger-2" style="color: {subtitle_color}; font-size: 1.1rem; margin-top: 0.5rem; font-weight: 400;">{subtitle}</p>' if subtitle else ''}
-    </div>
-    """
+<div class="animate-fade-in" style="text-align: center; margin-bottom: 2rem;">
+<h1 class="main-header gradient-text" style="background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 50%, #FF8A8A 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-clip: text;animation: gradientShift 3s ease infinite;background-size: 200% 200%;">{title}</h1>
+{f'<p class="animate-stagger-2" style="color: {subtitle_color}; font-size: 1.1rem; margin-top: 0.5rem; font-weight: 400;">{subtitle}</p>' if subtitle else ''}
+</div>
+"""
     
     st.markdown(header_html, unsafe_allow_html=True)
 
@@ -109,9 +91,9 @@ def render_result_card(content: str, theme: str = "dark"):
         theme: Current theme
     """
     card_html = f"""
-    <div class="result-card glass-card animate-scale-in">
-        {content}
-    </div>
-    """
+<div class="result-card glass-card animate-scale-in">
+{content}
+</div>
+"""
     
     st.markdown(card_html, unsafe_allow_html=True)

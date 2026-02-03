@@ -60,24 +60,11 @@ def risk_badge_html(level_int: int, theme: str = "dark") -> str:
     border = style[f'border_{theme}']
     
     return f"""
-    <div style="
-        display:inline-flex;
-        align-items:center;
-        gap:10px;
-        padding:12px 18px;
-        border-radius:12px;
-        background:{bg};
-        color:{fg};
-        border:1px solid {border};
-        font-weight:700;
-        font-size:16px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
-        ">
-        <span style="font-size:20px;">{style['emoji']}</span>
-        <span>Risk level: {label}</span>
-    </div>
-    """
+<div style="display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;background:{bg};color:{fg};border:1px solid {border};font-weight:700;font-size:16px;box-shadow: 0 4px 15px rgba(0,0,0,0.1);margin-bottom: 20px;">
+<span style="font-size:20px;">{style['emoji']}</span>
+<span>Risk level: {label}</span>
+</div>
+"""
 
 
 def get_theme_colors(theme: str) -> dict:

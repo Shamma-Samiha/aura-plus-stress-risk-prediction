@@ -126,60 +126,59 @@ div.stButton > button[kind="primary"] > span {
 
 
 /* ===== EXPANDERS / ACCORDIONS ===== */
-.streamlit-expanderHeader {
+/* Use stable data-testid selectors instead of fragile class names */
+[data-testid="stExpander"] summary,
+[data-testid="stExpanderToggleIcon"],
+div[data-testid="stExpander"] > details > summary {
     background: var(--bg-card) !important;
     border-radius: var(--radius-md) !important;
     border: 1px solid var(--border-color) !important;
-    margin-bottom: 8px;
+    margin-bottom: 8px !important;
     padding: 1rem 1.25rem !important;
-    transition: all var(--transition-base);
-    backdrop-filter: blur(10px);
+    transition: all var(--transition-base) !important;
+    backdrop-filter: blur(10px) !important;
     color: var(--text-primary) !important;
 }
 
-.streamlit-expanderContent {
+[data-testid="stExpander"] > div,
+[data-testid="stExpander"] details > div:not(summary) {
     overflow: visible !important;
     width: 100% !important;
     max-width: 100% !important;
 }
 
-.streamlit-expanderContent > div {
-    overflow: visible !important;
-    width: 100% !important;
-}
-
-.streamlit-expanderHeader:hover {
+[data-testid="stExpander"] summary:hover,
+div[data-testid="stExpander"] > details > summary:hover {
     background: var(--bg-card-hover) !important;
     border-color: var(--border-color-hover) !important;
-    transform: translateX(4px);
+    transform: translateX(4px) !important;
 }
 
-.streamlit-expanderHeader[aria-expanded="true"],
-.streamlit-expanderHeader[aria-expanded="true"]:hover {
+[data-testid="stExpander"] summary[aria-expanded="true"],
+[data-testid="stExpander"] summary[aria-expanded="true"]:hover,
+div[data-testid="stExpander"] > details[open] > summary,
+div[data-testid="stExpander"] > details[open] > summary:hover {
     border-color: var(--border-color-hover) !important;
 }
 
-.streamlit-expanderContent {
+[data-testid="stExpander"] details > div:not(summary),
+div[data-testid="stExpander"] > details > div:last-child {
     background: var(--bg-card) !important;
     border-radius: 0 0 var(--radius-md) var(--radius-md) !important;
     border: 1px solid var(--border-color) !important;
     border-top: none !important;
     padding: 1.5rem 1.25rem !important;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px) !important;
     overflow: visible !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }
 
-.streamlit-expanderHeader p, 
-.streamlit-expanderHeader div, 
-.streamlit-expanderHeader span,
-.streamlit-expanderHeader *,
-.streamlit-expanderContent p, 
-.streamlit-expanderContent div, 
-.streamlit-expanderContent span,
-.streamlit-expanderContent label,
-.streamlit-expanderContent .stMarkdown {
+[data-testid="stExpander"] p, 
+[data-testid="stExpander"] div, 
+[data-testid="stExpander"] span,
+[data-testid="stExpander"] label,
+[data-testid="stExpander"] .stMarkdown {
     color: var(--text-primary) !important;
 }
 
@@ -507,12 +506,17 @@ label,
     overflow-x: hidden !important;
 }
 
-.block-container {
-    padding-top: 3rem;
-    padding-bottom: 4rem;
-    max-width: 1100px;
-    position: relative;
-    z-index: var(--z-base);
+/* Lock main container to prevent Streamlit Cloud overrides */
+.block-container,
+[data-testid="stAppViewContainer"] > .main > .block-container,
+section.main > div.block-container {
+    padding-top: 3rem !important;
+    padding-bottom: 4rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    max-width: 1100px !important;
+    position: relative !important;
+    z-index: var(--z-base) !important;
     overflow-x: visible !important;
     width: 100% !important;
     box-sizing: border-box !important;
@@ -565,21 +569,21 @@ label,
 }
 
 h2 {
-    color: var(--text-primary);
-    font-weight: 700;
-    font-size: 1.8rem;
-    margin-top: 2rem;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    font-size: 1.8rem !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1.25rem !important;
+    letter-spacing: -0.01em !important;
 }
 
 h3 {
-    color: var(--text-primary);
-    font-weight: 700;
-    font-size: 1.5rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    letter-spacing: -0.01em;
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    letter-spacing: -0.01em !important;
 }
 
 /* ===== CAPTIONS ===== */
